@@ -1,8 +1,10 @@
 import { Day } from './day';
 import day1 from '././././day1/index';
+import day2 from './day2/index';
 // MORE IMPORTS HERE
 const days: { [key: number]: Day; } = {
   1: day1,
+  2: day2,
   // MORE DAYS HERE
 };
 

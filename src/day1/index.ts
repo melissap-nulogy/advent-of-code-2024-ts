@@ -1,6 +1,6 @@
 import { Day } from "../day";
 
-class Day0 extends Day {
+class Day1 extends Day {
 
     constructor(){
         super(1);
@@ -36,4 +36,4 @@ class Day0 extends Day {
     }
 }
 
-export default new Day0;
+export default new Day1;
