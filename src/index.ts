@@ -1,10 +1,10 @@
 import { Day } from './day';
-import day0 from './././day0/index';
+import day1 from '././././day1/index';
 // MORE IMPORTS HERE
-const days: Day[] = [
-    day0,
-    // MORE DAYS HERE
-];
+const days: { [key: number]: Day; } = {
+  1: day1,
+  // MORE DAYS HERE
+};
 
 async function runDay(dayId: number) {
   const resultPart1 = await days[dayId].partOne();
@@ -24,5 +24,5 @@ if (params.length) {
   runDay(parseInt(params[0], 10));
 } else {
   console.log(`Usage: npm run start [day]`);
-  console.log(`Available days: [ ${days.map((x) => x.id).join(", ")} ]`);
+  console.log(`Available days: [ ${Object.keys(days).map((x) => x).join(", ")} ]`);
 }
