@@ -20,8 +20,9 @@ async function runDay(dayId: number) {
 
 console.log("\n\n\n   ADVENT OF CODE \n\n");
 const params = process.argv.splice(2);
-if (params.length) {
-  runDay(parseInt(params[0], 10));
+const dayId = parseInt(params[0], 10);
+if (params.length && days[dayId] !== undefined) {
+  runDay(dayId);
 } else {
   console.log(`Usage: npm run start [day]`);
   console.log(`Available days: [ ${Object.keys(days).map((x) => x).join(", ")} ]`);
