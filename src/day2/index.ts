@@ -36,7 +36,34 @@ class Day2 extends Day {
     }
 
     solveForPartTwo(input: string): string {
-        return ""
+        let validCount: number = 0;
+        this.getRecords(input).forEach((record) => {
+            const result = this.runStuff(record, record, 0)
+            if(result) validCount++;
+        });
+
+        return validCount.toString();
+    }
+
+    runStuff(record: number[], newRecord: number[], indexToRemove: number) :boolean{
+        let index = 0;
+        let valid = true;
+        let isIncreasing = null;
+        while (index < newRecord.length-1 && valid) {
+            valid = this.isValid(newRecord, index, isIncreasing);
+            isIncreasing = newRecord[index] < newRecord[index + 1];
+            index++;
+        }
+        if(valid) {
+            return true;
+        } else {
+            if (indexToRemove > newRecord.length) {
+                return false;
+            }
+            let recordTemp = [...record];
+            recordTemp.splice(indexToRemove, 1);
+            return this.runStuff(record, recordTemp, indexToRemove+1);
+        }
     }
 
     getRecords(input: string): number[][] {
