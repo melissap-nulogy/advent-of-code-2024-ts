@@ -1,5 +1,5 @@
 import { Day } from './day';
-import day0 from './day0/index';
+import day0 from './././day0/index';
 // MORE IMPORTS HERE
 const days: Day[] = [
     day0,
