@@ -38,14 +38,14 @@ class Day2 extends Day {
     solveForPartTwo(input: string): string {
         let validCount: number = 0;
         this.getRecords(input).forEach((record) => {
-            const result = this.runStuff(record, record, 0)
+            const result = this.calculateValidity(record, record, 0)
             if(result) validCount++;
         });
 
         return validCount.toString();
     }
 
-    runStuff(record: number[], newRecord: number[], indexToRemove: number) :boolean{
+    calculateValidity(record: number[], newRecord: number[], indexToRemove: number) :boolean{
         let index = 0;
         let valid = true;
         let isIncreasing = null;
@@ -62,7 +62,7 @@ class Day2 extends Day {
             }
             let recordTemp = [...record];
             recordTemp.splice(indexToRemove, 1);
-            return this.runStuff(record, recordTemp, indexToRemove+1);
+            return this.calculateValidity(record, recordTemp, indexToRemove+1);
         }
     }
 
