@@ -1,8 +1,8 @@
 import { Day } from "../day";
 
-type Direction = 'Up' | 'Down' | 'Left' | 'Right' | 'Up-Left' | 'Up-Right' | 'Down-Left' | 'Down-Right';
+const DIRECTIONS = ['Up', 'Down', 'Left', 'Right', 'Up-Left', 'Up-Right', 'Down-Left', 'Down-Right'] as const;
+type Direction = typeof DIRECTIONS[number];
 
-const DIRECTIONS: Direction[] = ['Up', 'Down', 'Left', 'Right', 'Up-Left', 'Up-Right', 'Down-Left', 'Down-Right'];
 class Day4 extends Day {
 
     constructor(){
