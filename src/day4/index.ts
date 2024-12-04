@@ -31,7 +31,7 @@ class Day4 extends Day {
         const letters = ['M', 'A', 'S'];
 
         letters.forEach((letter) => {
-            if (!(x >= 0 && x < grid.length && y >= 0 && y < grid[x].length && grid[x][y] === letter)) {
+            if (!(this.isValidIndex(grid,x,y) && grid[x][y] === letter)) {
                 found = false;
             }
 
@@ -52,31 +52,17 @@ class Day4 extends Day {
                     const downRight = this.getValueInDirection(grid, row, col, "Down-Right");
                     if(upLeft == 'M') {
                         if(downRight !== 'S') {
-                            passes = false;
+                            continue;
                         }
                     } else if(upLeft == 'S') {
                         if(downRight !== 'M') {
-                            passes = false;
+                            continue;
                         }
                     } else {
-                        passes = false;
+                        continue;
                     }
 
-                    const upRight = this.getValueInDirection(grid, row, col, "Up-Right");
-                    const downLeft = this.getValueInDirection(grid, row, col, "Down-Left");
-                    if(upRight == 'M') {
-                        if(downLeft !== 'S') {
-                            passes = false;
-                        }
-                    } else if(upRight == 'S') {
-                        if(downLeft !== 'M') {
-                            passes = false;
-                        }
-                    } else {
-                        passes = false;
-                    }
-
-                    if(passes) {
+                    if(this.checkForAcross(grid, row, col, "Up-Left", "Down-Right") && this.checkForAcross(grid, row, col, "Up-Right", "Down-Left")) {
                         xmas_count++;
                     }
                 }
@@ -86,6 +72,24 @@ class Day4 extends Day {
         return xmas_count.toString();
     }
 
+    checkForAcross(grid: string[][], row: number, col: number, direction1: Direction, direction2: Direction) {
+        const letterAtDirection1 = this.getValueInDirection(grid, row, col, direction1);
+        const letterAtDirection2 = this.getValueInDirection(grid, row, col, direction2);
+        if(letterAtDirection1 == 'M') {
+            if(letterAtDirection2 !== 'S') {
+                return false;
+            }
+        } else if(letterAtDirection1 == 'S') {
+            if(letterAtDirection2 !== 'M') {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return true
+    }
+
     readGrid(input: string): string[][] {
         return input.split('\n').map((line) => line.split(''));
     }
@@ -93,7 +97,7 @@ class Day4 extends Day {
     getValueInDirection(grid: string[][], row: number, col: number, direction: Direction) {
         let [x, y] = this.moveInDirection(row, col, direction);
 
-        if(x >= 0 && x < grid.length && y >= 0 && y < grid[x].length) {
+        if(this.isValidIndex(grid, x, y)) {
             return grid[x][y];
         }
 
@@ -120,6 +124,10 @@ class Day4 extends Day {
         }
 
         return [row, col];
+    }
+
+    isValidIndex(grid: string[][], row: number, col: number): boolean {
+        return row >= 0 && row < grid.length && col >= 0 && col < grid[row].length;
     }
 }
 
