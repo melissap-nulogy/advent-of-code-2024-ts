@@ -7,6 +7,8 @@ class Day4 extends Day {
 
     constructor(){
         super(4);
+        this.expectedResultPart1 = "2530";
+        this.expectedResultPart2 = "1921";
     }
 
     solveForPartOne(input: string): string {
@@ -73,18 +75,17 @@ class Day4 extends Day {
     }
 
     checkForAcross(grid: string[][], row: number, col: number, direction1: Direction, direction2: Direction) {
-        const letterAtDirection1 = this.getValueInDirection(grid, row, col, direction1);
-        const letterAtDirection2 = this.getValueInDirection(grid, row, col, direction2);
-        if(letterAtDirection1 == 'M') {
-            if(letterAtDirection2 !== 'S') {
-                return false;
-            }
-        } else if(letterAtDirection1 == 'S') {
-            if(letterAtDirection2 !== 'M') {
-                return false;
-            }
-        } else {
+        const letter1 = this.getValueInDirection(grid, row, col, direction1);
+        const letter2 = this.getValueInDirection(grid, row, col, direction2);
+        const lettersToCheck = ['M', 'S'];
+        if(!lettersToCheck.includes(letter1) || !lettersToCheck.includes(letter2)) {
             return false;
+        }
+
+        if(letter1 == lettersToCheck[0] && letter2 !== lettersToCheck[1]) {
+                return false;
+        } else if(letter1 == lettersToCheck[1] && letter2 !== lettersToCheck[0]) {
+                return false;
         }
 
         return true

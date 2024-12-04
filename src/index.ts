@@ -14,17 +14,16 @@ const days: { [key: number]: Day; } = {
 
 async function runDay(dayId: number) {
   const resultPart1 = await days[dayId].partOne();
-  console.log("Part 1 result:\n");
-  console.log(resultPart1);
+
+  console.log("Part 1 result:\t", resultPart1);
+  console.log("Expected:\t", days[dayId].expectedResultPart1)
 
   console.log("\n");
-
   const resultPart2 = await days[dayId].partTwo();
-  console.log("Part 2 result:\n");
-  console.log(resultPart2);
+  console.log("Part 2 result:\t", resultPart2);
+  console.log("Expected:\t", days[dayId].expectedResultPart2)
 }
 
-console.log("\n\n\n   ADVENT OF CODE \n\n");
 const params = process.argv.splice(2);
 const dayId = parseInt(params[0], 10);
 if (params.length && days[dayId] !== undefined) {

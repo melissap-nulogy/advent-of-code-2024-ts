@@ -3,6 +3,8 @@ import fs from 'fs';
 abstract class Day {
     
     id: number;
+    expectedResultPart1: string = "Unknown";
+    expectedResultPart2: string = "Unknown";
 
     constructor(id: number){
         this.id = id;
