@@ -18,17 +18,28 @@ async function runDay(dayId: number) {
   console.log("Part 1 result:\t", resultPart1);
   console.log("Expected:\t", days[dayId].expectedResultPart1)
 
-  console.log("\n");
   const resultPart2 = await days[dayId].partTwo();
   console.log("Part 2 result:\t", resultPart2);
   console.log("Expected:\t", days[dayId].expectedResultPart2)
 }
 
+async function runALl() {
+  for (const dayId in days) {
+    console.log(`Day ${dayId}`);
+    await runDay(parseInt(dayId, 10));
+    console.log("\n");
+  }
+}
+
 const params = process.argv.splice(2);
-const dayId = parseInt(params[0], 10);
-if (params.length && days[dayId] !== undefined) {
-  runDay(dayId);
+if(params[0] === 'all'){
+    runALl();
 } else {
-  console.log(`Usage: npm run start [day]`);
-  console.log(`Available days: [ ${Object.keys(days).map((x) => x).join(", ")} ]`);
+  const dayId = parseInt(params[0], 10);
+  if (params.length && days[dayId] !== undefined) {
+    runDay(dayId);
+  } else {
+    console.log(`Usage: npm run start [day]`);
+    console.log(`Available days: [ ${Object.keys(days).map((x) => x).join(", ")} ]`);
+  }
 }

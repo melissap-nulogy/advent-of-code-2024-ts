@@ -4,6 +4,8 @@ class Day2 extends Day {
 
     constructor(){
         super(2);
+        this.expectedResultPart1 = "606";
+        this.expectedResultPart2 = "644";
     }
 
     solveForPartOne(input: string): string {
