@@ -3,12 +3,14 @@ import day1 from './day1/index';
 import day2 from './day2/index';
 import day3 from './day3/index';
 import day4 from './day4/index';
+import day5 from './day5/index';
 // MORE IMPORTS HERE
 const days: { [key: number]: Day; } = {
   1: day1,
   2: day2,
   3: day3,
   4: day4,
+  5: day5,
   // MORE DAYS HERE
 };
 
