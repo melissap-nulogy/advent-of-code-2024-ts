@@ -27,7 +27,7 @@ class Day4 extends Day {
         return xmas_count.toString();
     }
 
-    checkSurroundingCharacters(grid: string[][], row: number, col: number, direction: string): boolean {
+    checkSurroundingCharacters(grid: string[][], row: number, col: number, direction: Direction): boolean {
         let [x,y] = this.moveInDirection(row, col, direction);
         let found = true;
         const letters = ['M', 'A', 'S'];
