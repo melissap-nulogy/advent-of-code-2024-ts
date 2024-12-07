@@ -105,7 +105,7 @@ class Day4 extends Day {
         return "";
     }
 
-    moveInDirection(row: number, col: number, direction: string): [number, number] {
+    moveInDirection(row: number, col: number, direction: Direction): [number, number] {
         if (direction === 'Up') {
             return [row - 1, col];
         } else if (direction === 'Down') {
