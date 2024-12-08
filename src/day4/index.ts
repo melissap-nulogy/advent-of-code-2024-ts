@@ -16,7 +16,7 @@ class Day4 extends Day {
     let xmasCount = 0;
     for (let row = 0; row < grid.length(); row++) {
       for (let col = 0; col < grid.getRow(row).length; col++) {
-        if (grid.getCol(row, col) === 'X') {
+        if (grid.getValue(row, col) === 'X') {
           DIRECTIONS.forEach((direction) => {
             if (this.checkSurroundingCharacters(grid, row, col, direction)) xmasCount++;
           });
@@ -33,7 +33,7 @@ class Day4 extends Day {
     const letters = ['M', 'A', 'S'];
 
     letters.forEach((letter) => {
-      if (!(grid.isValidIndex(x, y) && grid.getCol(x, y) === letter)) {
+      if (!(grid.isValidIndex(x, y) && grid.getValue(x, y) === letter)) {
         found = false;
       }
 
@@ -48,7 +48,7 @@ class Day4 extends Day {
     let xmasCount = 0;
     for (let row = 0; row < grid.length(); row++) {
       for (let col = 0; col < grid.getRow(row).length; col++) {
-        if (grid.getCol(row, col) === 'A') {
+        if (grid.getValue(row, col) === 'A') {
           const upLeft = grid.getValueInDirection(row, col, 'Up-Left');
           const downRight = grid.getValueInDirection(row, col, 'Down-Right');
           if (upLeft === 'M') {

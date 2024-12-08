@@ -2,7 +2,6 @@ import { Day } from '../day'
 import Grid from '../helpers/Grid'
 
 const DIRECTIONS = ['Up', 'Right', 'Down', 'Left'] as const;
-type Direction = typeof DIRECTIONS[number];
 type Guard = {
     position: number[];
     directionIndex: number;
@@ -34,13 +33,13 @@ class Day6 extends Day {
 
     for (let row = 0; row < grid.length() && guard == null; row++) {
       for (let col = 0; col < grid.getRow(row).length && guard == null; col++) {
-        if (grid.getCol(row, col) === '^') {
+        if (grid.getValue(row, col) === '^') {
           guard = { position: [row, col], directionIndex: 0 };
-        } else if (grid.getCol(row, col) === '>') {
+        } else if (grid.getValue(row, col) === '>') {
           guard = { position: [row, col], directionIndex: 1 };
-        } else if (grid.getCol(row, col) === 'v') {
+        } else if (grid.getValue(row, col) === 'v') {
           guard = { position: [row, col], directionIndex: 2 };
-        } else if (grid.getCol(row, col) === '<') {
+        } else if (grid.getValue(row, col) === '<') {
           guard = { position: [row, col], directionIndex: 3 };
         }
       }
@@ -60,10 +59,10 @@ class Day6 extends Day {
 
     for (let row = 0; row < grid.length(); row++) {
       for (let col = 0; col < grid.getRow(row).length; col++) {
-        if (grid.getCol(row, col) === '#') continue;
+        if (this.isObstacle(grid, row, col)) continue;
 
         const gridToCheck = grid.dup();
-        gridToCheck.set(row, col, '#');
+        this.addObstacle(gridToCheck, row, col);
         if (this.checkGridForLoop(gridToCheck, guard!)) {
           positionsWithLoops.add(`${row},${col}`);
         }
@@ -85,14 +84,11 @@ class Day6 extends Day {
       if (visitedWithDirection.has(`${currentX},${currentY},${currentDirectionIndex}`)) {
         hasLoop = true;
         patrolling = false;
-        // detected loop so good position
       } else {
         uniquePositions.add(`${currentX},${currentY}`);
         visitedWithDirection.add(`${currentX},${currentY},${currentDirectionIndex}`);
-        // Check whats ahead
-        if (grid.getValueInDirection(currentX, currentY, DIRECTIONS[currentDirectionIndex]) === '#') {
-          // if its a obstacle turn 90 degrees right
-          currentDirectionIndex = (currentDirectionIndex + 1) % 4;
+        if (this.facingObstacle(grid, currentX, currentY, DIRECTIONS[currentDirectionIndex])) {
+          currentDirectionIndex = this.turn(currentDirectionIndex);
         } else {
           [currentX, currentY] = grid.moveInDirection(currentX, currentY, DIRECTIONS[currentDirectionIndex]);
         }
@@ -102,6 +98,22 @@ class Day6 extends Day {
     }
 
     return hasLoop;
+  }
+
+  turn (currentDirectionIndex: number): number {
+    return (currentDirectionIndex + 1) % 4;
+  }
+
+  facingObstacle (grid: Grid, row: number, col: number, direction: typeof DIRECTIONS[number]): boolean {
+    return grid.getValueInDirection(row, col, direction) === '#'
+  }
+
+  isObstacle (grid: Grid, row: number, col: number): boolean {
+    return grid.getValue(row, col) === '#'
+  }
+
+  addObstacle (grid: Grid, row: number, col: number): void {
+    grid.set(row, col, '#');
   }
 }
 

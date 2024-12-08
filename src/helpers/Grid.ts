@@ -12,7 +12,7 @@ class Grid {
       return this.grid[index];
     }
 
-    getCol (row: number, col: number): string {
+    getValue (row: number, col: number): string {
       return this.grid[row][col];
     }
 
