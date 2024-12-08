@@ -35,6 +35,6 @@ describe('On Day 7', () => {
         '21037: 9 7 18 13\n' +
         '292: 11 6 16 20'
 
-    expect(day7.solveForPartTwo(input)).toBe('?')
+    expect(day7.solveForPartTwo(input)).toBe('11387')
   })
 })
