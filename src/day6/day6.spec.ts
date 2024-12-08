@@ -11,9 +11,18 @@ afterEach(() => {
 
 describe('On Day 6', () => {
   it('part 1 works for their example', () => {
-    const input: string = ''
+    const input: string = '....#.....\n' +
+        '.........#\n' +
+        '..........\n' +
+        '..#.......\n' +
+        '.......#..\n' +
+        '..........\n' +
+        '.#..^.....\n' +
+        '........#.\n' +
+        '#.........\n' +
+        '......#...'
 
-    expect(day6.solveForPartOne(input)).toBe('?')
+    expect(day6.solveForPartOne(input)).toBe('41')
   })
 
   it('part 2 works for their example', () => {
