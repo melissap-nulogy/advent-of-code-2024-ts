@@ -26,8 +26,17 @@ describe('On Day 6', () => {
   })
 
   it('part 2 works for their example', () => {
-    const input: string = ''
+    const input: string = '....#.....\n' +
+        '.........#\n' +
+        '..........\n' +
+        '..#.......\n' +
+        '.......#..\n' +
+        '..........\n' +
+        '.#..^.....\n' +
+        '........#.\n' +
+        '#.........\n' +
+        '......#...'
 
-    expect(day6.solveForPartTwo(input)).toBe('?')
+    expect(day6.solveForPartTwo(input)).toBe('6')
   })
 })
