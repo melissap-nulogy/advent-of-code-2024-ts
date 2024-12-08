@@ -3,8 +3,8 @@ import { Day } from '../day'
 class Day7 extends Day {
   constructor () {
     super(7)
-    this.expectedResultPart1 = '?'
-    this.expectedResultPart2 = '?'
+    this.expectedResultPart1 = '20665830408335'
+    this.expectedResultPart2 = '354060705047464'
   }
 
   solveForPartOne (input: string): string {
