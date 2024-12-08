@@ -60,6 +60,8 @@ class Day6 extends Day {
 
     for (let row = 0; row < grid.length(); row++) {
       for (let col = 0; col < grid.getRow(row).length; col++) {
+        if (grid.getCol(row, col) === '#') continue;
+
         const gridToCheck = grid.dup();
         gridToCheck.set(row, col, '#');
         if (this.checkGridForLoop(gridToCheck, guard!)) {
