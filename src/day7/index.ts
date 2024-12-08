@@ -8,6 +8,14 @@ class Day7 extends Day {
   }
 
   solveForPartOne (input: string): string {
+    return this.solve(false, input)
+  }
+
+  solveForPartTwo (input: string): string {
+    return this.solve(true, input)
+  }
+
+  solve (doCombine: boolean, input: string): string {
     const equationList = input.split('\n');
     let calculatedAnswer = 0;
 
@@ -17,7 +25,7 @@ class Day7 extends Day {
       const numbers = equationString.split(' ').map(Number);
 
       const rootNode = new Node(numbers[0]);
-      rootNode.addNext(numbers, 1);
+      rootNode.addNext(numbers, 1, doCombine);
 
       const leaves = rootNode.findLeafNodes();
 
@@ -30,10 +38,6 @@ class Day7 extends Day {
       }
     });
     return calculatedAnswer.toString()
-  }
-
-  solveForPartTwo (input: string): string {
-    return ''
   }
 }
 
@@ -48,7 +52,7 @@ class Node {
     this.operation = operation;
   }
 
-  addNext (numbers: number[], index: number) {
+  addNext (numbers: number[], index: number, doCombine: boolean = false): void {
     if (index >= numbers.length) return;
 
     const addNode = new Node(this.value + numbers[index], '+');
@@ -56,8 +60,14 @@ class Node {
 
     this.children.push(addNode, multiplyNode);
 
-    addNode.addNext(numbers, index + 1);
-    multiplyNode.addNext(numbers, index + 1);
+    if (doCombine) {
+      const combineNode = new Node(parseInt(this.value.toString() + numbers[index].toString()), '||');
+      this.children.push(combineNode);
+      combineNode.addNext(numbers, index + 1, true);
+    }
+
+    addNode.addNext(numbers, index + 1, doCombine);
+    multiplyNode.addNext(numbers, index + 1, doCombine);
   }
 
   findLeafNodes (): number[] {
