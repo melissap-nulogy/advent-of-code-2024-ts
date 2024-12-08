@@ -57,6 +57,14 @@ class Grid {
         return [row, col - 1];
       } else if (direction === 'Right') {
         return [row, col + 1];
+      } else if (direction === 'Up-Left') {
+        return [row - 1, col - 1];
+      } else if (direction === 'Up-Right') {
+        return [row - 1, col + 1];
+      } else if (direction === 'Down-Left') {
+        return [row + 1, col - 1];
+      } else if (direction === 'Down-Right') {
+        return [row + 1, col + 1];
       }
 
       return [row, col];

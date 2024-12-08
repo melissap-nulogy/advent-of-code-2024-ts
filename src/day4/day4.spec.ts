@@ -2,16 +2,16 @@ import day4 from './index';
 const jestConsole = console;
 
 beforeEach(() => {
-    global.console = require('console');
+  global.console = require('console');
 });
 
 afterEach(() => {
-    global.console = jestConsole;
+  global.console = jestConsole;
 });
 
-describe('On Day 4', () =>{
-    it(`part 1 works for their example`, ()=>{
-        const input: string =   'MMMSXXMASM\n' +
+describe('On Day 4', () => {
+  it('part 1 works for their example', () => {
+    const input: string = 'MMMSXXMASM\n' +
                                 'MSAMXMSMSA\n' +
                                 'AMXSXMAAMM\n' +
                                 'MSAMASMSMX\n' +
@@ -22,11 +22,11 @@ describe('On Day 4', () =>{
                                 'MAMMMXMMMM\n' +
                                 'MXMXAXMASX';
 
-        expect(day4.solveForPartOne(input)).toBe("18");
-    })
+    expect(day4.solveForPartOne(input)).toBe('18');
+  })
 
-    it(`part 2 works for their example`, ()=>{
-        const input: string = 'MMMSXXMASM\n' +
+  it('part 2 works for their example', () => {
+    const input: string = 'MMMSXXMASM\n' +
             'MSAMXMSMSA\n' +
             'AMXSXMAAMM\n' +
             'MSAMASMSMX\n' +
@@ -37,6 +37,6 @@ describe('On Day 4', () =>{
             'MAMMMXMMMM\n' +
             'MXMXAXMASX';
 
-        expect(day4.solveForPartTwo(input)).toBe("9");
-    })
+    expect(day4.solveForPartTwo(input)).toBe('9');
+  })
 });
