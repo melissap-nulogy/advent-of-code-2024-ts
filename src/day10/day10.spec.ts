@@ -58,6 +58,6 @@ describe('On Day 10', () => {
         '01329801\n' +
         '10456732'
 
-    expect(day10.solveForPartTwo(input)).toBe('?')
+    expect(day10.solveForPartTwo(input)).toBe('81')
   })
 })

@@ -5,8 +5,8 @@ const DIRECTIONS = ['Up', 'Down', 'Left', 'Right'] as const;
 class Day10 extends Day {
   constructor () {
     super(10)
-    this.expectedResultPart1 = '?'
-    this.expectedResultPart2 = '?'
+    this.expectedResultPart1 = '796'
+    this.expectedResultPart2 = '1942'
   }
 
   solveForPartOne (input: string): string {
@@ -58,7 +58,16 @@ class Day10 extends Day {
   }
 
   solveForPartTwo (input: string): string {
-    return '';
+    const grid = new Grid(input, ['Up', 'Down', 'Left', 'Right']);
+    const trailheads = this.findTrailheads(grid);
+
+    let countOfNines = 0;
+
+    trailheads.forEach((trailhead) => {
+      const counter = this.countPaths(grid, trailhead[0], trailhead[1]);
+      countOfNines += counter.length;
+    });
+    return countOfNines.toString();
   }
 }
 
