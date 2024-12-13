@@ -8,6 +8,7 @@ import day6 from './day6/index';
 import day7 from './day7/index';
 import day8 from './day8/index';
 import day10 from './day10/index';
+import day12 from './day12/index';
 // MORE IMPORTS HERE
 const days: { [key: number]: Day; } = {
   1: day1,
@@ -18,7 +19,8 @@ const days: { [key: number]: Day; } = {
   6: day6,
   7: day7,
   8: day8,
-  10: day10
+  10: day10,
+  12: day12
   // MORE DAYS HERE
 };
 
